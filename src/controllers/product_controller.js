@@ -7,16 +7,17 @@ class ProductController {
     .then(() => {
         Product.find({}).then((products) => {
             res.send(JSON.stringify(products));
+            mongoose.connection.close();
         })
     })
     .catch((err) => {
         res.send("Error")
     })
-    }
+    };
 
   static show(req, res) {
     return Product[req.params.id];
-  }
+  };
 
   static create(req, res) {
     const { name, preco } = req.body;
@@ -29,7 +30,7 @@ class ProductController {
     Books.last += 1;
 
     return livro;
-  }
+  };
 
   static update(req, res) {
     const { id } = req.params;
@@ -42,14 +43,10 @@ class ProductController {
 
     Books[id] = book;
     return book;
-  }
+  };
 
   static delete(req, res) {
     const { id } = req.params;
     Books[id] = null;
-
-    return { success: true };
-  }
-}
-
-module.exports = BookController;
+  };
+};
