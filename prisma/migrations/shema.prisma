@@ -1,0 +1,12 @@
+shema generetor client {
+    provider = "prisma-client-js"
+}
+
+datasoure db {
+    provider = "postgresql"
+}
+model User {
+    id int @id @default(autoincrement())
+    name String
+    email String @unique
+}
